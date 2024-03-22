@@ -1,10 +1,10 @@
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.utils import to_categorical, plot_model
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import BatchNormalization, Conv2D, MaxPooling2D, Activation, Flatten, Dropout, Dense
-from tensorflow.keras import backend as K
+from keras.preprocessing.image import ImageDataGenerator
+from keras.optimizers import Adam
+from keras.utils import image_utils
+from keras.utils import to_categorical, plot_model
+from keras.models import Sequential
+from keras.layers import BatchNormalization, Conv2D, MaxPooling2D, Activation, Flatten, Dropout, Dense
+from keras import backend as K
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
@@ -23,7 +23,7 @@ data = []
 labels = []
 
 # load image files from the dataset
-image_files = [f for f in glob.glob(r'C:\Files\gender_dataset_face' + "/**/*", recursive=True) if not os.path.isdir(f)]
+image_files = [f for f in glob.glob(r'C:\Users\prith\Source\Repos\Gender-Detection\gender_dataset_face' + "/**/*", recursive=True) if not os.path.isdir(f)]
 random.shuffle(image_files)
 
 # converting images to arrays and labelling the categories
@@ -32,7 +32,7 @@ for img in image_files:
     image = cv2.imread(img)
     
     image = cv2.resize(image, (img_dims[0],img_dims[1]))
-    image = img_to_array(image)
+    image = image_utils.img_to_array(image)
     data.append(image)
 
     label = img.split(os.path.sep)[-2] # C:\Files\gender_dataset_face\woman\face_1162.jpg

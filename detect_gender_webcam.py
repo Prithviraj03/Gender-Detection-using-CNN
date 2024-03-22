@@ -1,5 +1,6 @@
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.models import load_model
+from tensorflow import keras
+from keras.utils import image_utils
+from keras.models import load_model
 import numpy as np
 import cv2
 import os
@@ -42,7 +43,7 @@ while webcam.isOpened():
         # preprocessing for gender detection model
         face_crop = cv2.resize(face_crop, (96,96))
         face_crop = face_crop.astype("float") / 255.0
-        face_crop = img_to_array(face_crop)
+        face_crop = image_utils.img_to_array(face_crop)
         face_crop = np.expand_dims(face_crop, axis=0)
 
         # apply gender detection on face
