@@ -11,6 +11,10 @@ model = load_model('gender_detection.model')
 
 # open webcam
 webcam = cv2.VideoCapture(0)
+
+# Set desired frame rate (adjust accordingly)
+fps = 30
+webcam.set(cv2.CAP_PROP_FPS, fps)
     
 classes = ['man','woman']
 
